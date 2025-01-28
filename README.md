@@ -7,4 +7,4 @@ Backend Service (Golang) that fetches real-time & historical data from Alpha Van
 1. Clone the repository.
 2. Add your Alpha Vantage API key in `services/stock.go`.
 3. Clean up and update dependencies: go mod tidy
-4. Run the app: go run main.go
+4. Run the app: `go run main.go`.
