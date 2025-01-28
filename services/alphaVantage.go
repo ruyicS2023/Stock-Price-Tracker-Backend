@@ -87,3 +87,23 @@ func FetchTimeSeriesDaily(symbol string) (models.TimeSeriesDailyResponse, error)
 
 	return dailyResp, nil
 }
+
+// FetchQuoteTrending fetches the latest price and volume information for a ticker.
+func FetchQuoteTrending(symbol string) (models.QuoteTrendingResponse, error) {
+	p := AlphaVantageParams{
+		Function: "GLOBAL_QUOTE", // This function returns the latest price & volume
+		Symbol:   symbol,
+	}
+
+	body, err := FetchData(p)
+	if err != nil {
+		return models.QuoteTrendingResponse{}, err
+	}
+
+	var trendingResp models.QuoteTrendingResponse
+	if err := json.Unmarshal(body, &trendingResp); err != nil {
+		return models.QuoteTrendingResponse{}, err
+	}
+
+	return trendingResp, nil
+}
